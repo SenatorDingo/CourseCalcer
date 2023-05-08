@@ -1,8 +1,8 @@
 
 import java.util.Scanner;
 
-public class CourseCalcer{
-	
+public class CourseCalcer {
+	 
 	
 	public static void main(String[] args){
 		
