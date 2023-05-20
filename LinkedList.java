@@ -1,14 +1,15 @@
-public class LinkedList{
+public class LinkedByArrayList{
 	
 	public static class Node{
 		protected String value;
-		protected String[] prereqs;
+		protected Node[] prereqs;
 		protected boolean done;
 		
 		public Node{
 			this.value = null;
 			this.prereqs = null;
-			this.done = false;			
+			this.done = false;
+			this
 		}
 		
 		public Node(String value, String[] prereqs, boolean done){
