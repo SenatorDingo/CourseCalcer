@@ -25,6 +25,30 @@ public class Course {
         this.offeredWinter = true;
     }
 
+    public boolean checkRequirements(){
+        int toTake = 0;
+        //base case
+        if (this.taken == true){
+            return true;
+        }
+
+        if (this.prerequisites == null) {
+            return true;
+        }
+
+        for (int i = 0; i < this.prerequisites.length; i++) {
+            if (prerequisites[i].taken != true) {
+                toTake++;
+            }
+        }
+        if (toTake != 0) {
+            return false;
+        }
+
+        return true;
+
+    }
+
    public Course(String name, boolean taken,Course[] prerequisites,boolean offeredFall, boolean offeredWinter, boolean offeredSummer) {
        this.name = name;
        this.taken = taken;
