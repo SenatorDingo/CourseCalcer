@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Course {
 
     private final String name;
@@ -5,7 +7,7 @@ public class Course {
     private boolean offeredFall;
     private boolean offeredWinter;
     private boolean offeredSummer;
-    private Course[] prerequisites;
+    private List<Course> prerequisites;
 
     public Course(String name){
         this.name = name;
@@ -16,7 +18,7 @@ public class Course {
         this.offeredSummer = true;
     }
 
-    public Course(String name, boolean taken,Course[] prerequisites){
+    public Course(String name, boolean taken,List<Course> prerequisites){
         this.name = name;
         this.taken = taken;
         this.prerequisites = prerequisites;
@@ -25,31 +27,35 @@ public class Course {
         this.offeredWinter = true;
     }
 
+    //checks if the Course can be taken ie. if the immediate prerequisites have been completed.
     public boolean checkRequirements(){
         int toTake = 0;
         //base case
         if (this.taken == true){
             return true;
         }
-
         if (this.prerequisites == null) {
             return true;
         }
-
-        for (int i = 0; i < this.prerequisites.length; i++) {
-            if (prerequisites[i].taken != true) {
+        for (int i = 0; i < this.prerequisites.size(); i++) {
+            if (prerequisites.get(i).taken != true) {
                 toTake++;
             }
         }
         if (toTake != 0) {
             return false;
         }
-
         return true;
-
     }
 
-   public Course(String name, boolean taken,Course[] prerequisites,boolean offeredFall, boolean offeredWinter, boolean offeredSummer) {
+    public List<Course> toDo(){
+        List<Course> toDo = new ArrayList<>();
+        if (this.checkRequirements()){
+            return null;
+        }
+    }
+
+   public Course(String name, boolean taken,List<Course> prerequisites,boolean offeredFall, boolean offeredWinter, boolean offeredSummer) {
        this.name = name;
        this.taken = taken;
        this.prerequisites = prerequisites;
@@ -64,7 +70,7 @@ public class Course {
         return this.name;
     }
 
-    public Course[] getPrerequisites(){
+    public List<Course> getPrerequisites(){
         return this.prerequisites;
     }
 
@@ -86,7 +92,7 @@ public class Course {
 
     //setters
 
-    public void setPrerequisites(Course[] prerequisites){
+    public void setPrerequisites(List<Course> prerequisites){
         this.prerequisites = prerequisites;
     }
 
