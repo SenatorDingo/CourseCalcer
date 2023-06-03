@@ -12,7 +12,7 @@ public class Course {
     public Course(String name){
         this.name = name;
         this.taken = false;
-        this.prerequisites = null;
+        this.prerequisites = new ArrayList<>();
         this.offeredFall = true;
         this.offeredWinter = true;
         this.offeredSummer = true;
@@ -38,7 +38,7 @@ public class Course {
             return true;
         }
         for (int i = 0; i < this.prerequisites.size(); i++) {
-            if (prerequisites.get(i).taken != true) {
+            if (!prerequisites.get(i).taken) {
                 toTake++;
             }
         }
@@ -47,12 +47,20 @@ public class Course {
         }
         return true;
     }
-
     public List<Course> toDo(){
         List<Course> toDo = new ArrayList<>();
-        if (this.checkRequirements()){
-            return null;
+        if (this.prerequisites == null){
+            toDo.add(this);
+            return toDo;
         }
+        for (int i = 0; i < this.prerequisites.size(); i++)
+            if (prerequisites.get(i).taken != true) {
+                toDo.addAll(prerequisites.get(i).toDo());
+            }
+        toDo.add(this);
+        List<Course> toDoDupe = new ArrayList<>(new HashSet<>(toDo));
+        return toDoDupe;
+
     }
 
    public Course(String name, boolean taken,List<Course> prerequisites,boolean offeredFall, boolean offeredWinter, boolean offeredSummer) {

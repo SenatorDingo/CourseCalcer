@@ -7,7 +7,7 @@ public class CourseCalcer {
 	public static void main(String[] args){
 		
 		String[] inputData = collector();
-		CourseList taken = new CourseList(inputData);
+		//CourseList taken = new CourseList(inputData);
 		
 	}
 
