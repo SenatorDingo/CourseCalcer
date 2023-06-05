@@ -47,17 +47,19 @@ public class Course {
         }
         return true;
     }
-    public List<Course> toDo(){
+    
+    //returns a list of courses to be done before a course is taken using recursion
+    private List<Course> toDo(Course course){
         List<Course> toDo = new ArrayList<>();
-        if (this.prerequisites == null){
-            toDo.add(this);
+        if (course.prerequisites == null){
+            toDo.add(course);
             return toDo;
         }
-        for (int i = 0; i < this.prerequisites.size(); i++)
-            if (prerequisites.get(i).taken != true) {
-                toDo.addAll(prerequisites.get(i).toDo());
+        for (int i = 0; i < course.prerequisites.size(); i++)
+            if (course.prerequisites.get(i).taken != true) {
+                toDo.addAll(course.prerequisites.get(i).toDo());
             }
-        toDo.add(this);
+        toDo.add(course);
         List<Course> toDoDupe = new ArrayList<>(new HashSet<>(toDo));
         return toDoDupe;
 
