@@ -57,12 +57,16 @@ public class Course {
         }
         for (int i = 0; i < course.prerequisites.size(); i++)
             if (course.prerequisites.get(i).taken != true) {
-                toDo.addAll(course.prerequisites.get(i).toDo());
+                toDo.addAll(toDo(course.prerequisites.get(i)));
             }
         toDo.add(course);
         List<Course> toDoDupe = new ArrayList<>(new HashSet<>(toDo));
         return toDoDupe;
 
+    }
+
+    public List<Course> toDo(){
+        return toDo(this);
     }
 
    public Course(String name, boolean taken,List<Course> prerequisites,boolean offeredFall, boolean offeredWinter, boolean offeredSummer) {

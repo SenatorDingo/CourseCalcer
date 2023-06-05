@@ -31,5 +31,6 @@ public class Test {
 
         System.out.println();
         CSI2110.toDo();
+        Initializer.initializer();
     }
 }
