@@ -1,2 +1,2 @@
 # CourseCalcer
- CC with linked list and scanner
+ A course choice assistance program for personal use
