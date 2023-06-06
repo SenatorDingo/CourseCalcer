@@ -21,16 +21,18 @@ public class Test {
 
 
         Course ITI1120 = new Course("ITI1120", false,null);
-        List<Course> prereques = new ArrayList<>();
+        CourseList prereques = new CourseList();
         prereques.add(ITI1120);
         Course ITI1121 = new Course("ITI1121",false,prereques);
-        List<Course> pre2 = new ArrayList<>();
+        CourseList pre2 = new CourseList();
         pre2.add(ITI1121);
         Course CSI2110 = new Course("CSI2110",false,pre2);
 
 
-        System.out.println();
+        System.out.println(CSI2110.toDo());
         CSI2110.toDo();
         Initializer.initializer();
+
+        System.out.println(Initializer.courseList.find("CSI2132").toDo());
     }
 }

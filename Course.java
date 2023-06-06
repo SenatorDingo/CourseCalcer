@@ -1,3 +1,4 @@
+import javax.swing.plaf.ColorUIResource;
 import java.util.*;
 
 public class Course {
@@ -12,13 +13,13 @@ public class Course {
     public Course(String name){
         this.name = name;
         this.taken = false;
-        this.prerequisites = new ArrayList<>();
+        this.prerequisites = new CourseList();
         this.offeredFall = true;
         this.offeredWinter = true;
         this.offeredSummer = true;
     }
 
-    public Course(String name, boolean taken,List<Course> prerequisites){
+    public Course(String name, boolean taken, CourseList prerequisites){
         this.name = name;
         this.taken = taken;
         this.prerequisites = prerequisites;
@@ -69,7 +70,7 @@ public class Course {
         return toDo(this);
     }
 
-   public Course(String name, boolean taken,List<Course> prerequisites,boolean offeredFall, boolean offeredWinter, boolean offeredSummer) {
+   public Course(String name, boolean taken,CourseList prerequisites,boolean offeredFall, boolean offeredWinter, boolean offeredSummer) {
        this.name = name;
        this.taken = taken;
        this.prerequisites = prerequisites;
@@ -84,8 +85,8 @@ public class Course {
         return this.name;
     }
 
-    public List<Course> getPrerequisites(){
-        return this.prerequisites;
+    public CourseList getPrerequisites(){
+        return (CourseList) this.prerequisites;
     }
 
     public boolean getTaken(){
@@ -106,8 +107,12 @@ public class Course {
 
     //setters
 
-    public void setPrerequisites(List<Course> prerequisites){
+    public void setPrerequisites(CourseList prerequisites){
         this.prerequisites = prerequisites;
+    }
+
+    public void setPrerequisite(Course prerequisite){
+        this.prerequisites.add(prerequisite);
     }
 
     public void setTaken(boolean taken){
@@ -124,6 +129,10 @@ public class Course {
 
     public void setOfferedSummer(boolean offeredSummer){
         this.offeredSummer = offeredSummer;
+    }
+
+    public String toString(){
+        return this.name;
     }
 
 }
